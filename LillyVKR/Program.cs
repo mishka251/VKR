@@ -16,7 +16,7 @@ namespace LillyVKR
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Formап1());
+            Application.Run(new MainForm());
         }
     }
 }
