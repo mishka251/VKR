@@ -42,12 +42,15 @@ namespace LillyVKR
         private void button1_Click(object sender, EventArgs e)
         {
             Dictionary<int, bool> symptoms = new Dictionary<int, bool>();
+            List<int> usedSymptomIDs = new List<int>();
             foreach (var par in checlkBoxesForId)
             {
                 symptoms.Add(par.Key, par.Value.Checked);
+                if (par.Value.Checked)
+                    usedSymptomIDs.Add(par.Key);
             }
             var res = Calculation.Probabilities(symptoms);
-            ResultForm resForm = new ResultForm(res);
+            ResultForm resForm = new ResultForm(res, usedSymptomIDs);
             resForm.Show();
         }
     }

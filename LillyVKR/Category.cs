@@ -11,7 +11,7 @@ namespace LillyVKR
     {
        public string Name;
        public List<Symptom> Symptoms;
-        int id;
+       // int id;
 
         public Category(int id, string name)
         {
@@ -21,7 +21,7 @@ namespace LillyVKR
             DataTable symps = myDB.SELECT(
                new List<string>() { "Id", "Name" },
                new List<string>() { "Symptom" },
-               new List<string>() { $"CategoryID = {id}" }
+               new List<(string, object)>() { ("CategoryID", id) }
                 );
             for(int i =0; i<symps.Rows.Count; i++)
             {

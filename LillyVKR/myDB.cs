@@ -46,28 +46,41 @@ namespace LillyVKR
         }
 
         public static DataTable SELECT(
-            List<string> fields,
-            List<string> tables,
-            List<string> conditions = null
-            )
+                   List<string> fields,
+                   List<string> tables,
+                   List<(string name, object val)> conditions = null
+                   )
         {
+
+            SqlCommand command = sqlConnection.CreateCommand();
+
 
             string f = String.Join(", ", fields);
             string t = String.Join(", ", tables);
-            string cond = conditions == null ? "" : "WHERE " + String.Join(" AND ", conditions);
+            string cond = "";
+
+            if (conditions != null)
+            {
+                List<string> conds = new List<string>();
+                foreach ((string name, object val) in conditions)
+                {
+                    conds.Add($"{name}=@{name}1");
+                    command.Parameters.Add(new SqlParameter($"@{name}1", val));
+                }
+                cond = "WHERE " + String.Join(" AND ", conds);
+            }
 
             string SQL = $"SELECT {f} FROM {t} {cond}";
 
             DataTable res = new DataTable();
 
 
-            SqlCommand command = sqlConnection.CreateCommand();
             command.CommandText = SQL;
             var reader = command.ExecuteReader();
             int cols = reader.FieldCount;
 
             for (int i = 0; i < cols; i++)
-                res.Columns.Add(new DataColumn(fields[i]));
+                res.Columns.Add(new DataColumn(reader.GetName(i)));
 
             object[] row = new object[cols];
             while (reader.Read())
@@ -80,7 +93,6 @@ namespace LillyVKR
             reader.Close();
             return res;
         }
-
 
         public static DataTable SELECT_ALL(
    string table,
@@ -116,6 +128,25 @@ namespace LillyVKR
         }
 
 
+       static SqlDbType getSqlType(object obj)
+        {
+            if (obj is int)
+                return SqlDbType.Int;
+            if (obj is float)
+                return SqlDbType.Float;
+
+            return SqlDbType.NVarChar;
+        }
+        static DbType getDbType(object obj)
+        {
+            if (obj is int)
+                return DbType.Int32;
+            if (obj is float)
+                return DbType.Double;
+
+            return DbType.String;
+        }
+
         public static void INSERT(string table, DataTable values)
         {
             SqlCommand cmd = sqlConnection.CreateCommand();
@@ -131,19 +162,54 @@ namespace LillyVKR
                 {
                     string par_name = $"@param{i}{j}";
                     param[j] = par_name;
-                    cmd.Parameters.Add(new SqlParameter(par_name, values.Rows[i][j]));
+                    SqlParameter SQLParam = new SqlParameter(par_name, getSqlType(values.Rows[i][j]));
+                    SQLParam.Value = values.Rows[i][j];
+                    SQLParam.DbType = getDbType(values.Rows[i][j]);
+
+                    cmd.Parameters.Add(SQLParam);
+                    //cmd.Parameters.Add(new SqlParameter(par_name, values.Rows[i][j]));
                 }
                 lines[i] = "(" + String.Join(",", param) + ")";
 
             }
 
+            string[] cols = new string[values.Columns.Count];
+            for (int i = 0; i < values.Columns.Count; i++)
+                cols[i] = values.Columns[i].ColumnName;
+
+            string col = "(" + String.Join(",", cols) + ")";
             string vals = String.Join(", ", lines);
-            cmd.CommandText = $"INSERT INTO {table} VALUES {vals};";
+            cmd.CommandText = $"INSERT INTO {table} {col} VALUES {vals};";
             cmd.ExecuteNonQuery();
         }
 
 
-        public static void DELETE(string table, string condition = "", object[] param = null)
+        public static void INSERT(string table, List<(string, object)> values)
+        {
+            SqlCommand cmd = sqlConnection.CreateCommand();
+
+
+
+            List<string> param = new List<string>(values.Count);
+            List<string> fields = new List<string>(values.Count);
+            foreach( (string name, object val) in values)
+            {
+                string par_name = $"@{name}1";
+                fields.Add(name);
+                param.Add(par_name);
+                cmd.Parameters.Add(new SqlParameter(par_name, val));
+            }
+            string line = "(" + String.Join(",", param) + ")";
+            string field = "(" + String.Join(",", fields) + ")";
+
+
+
+            cmd.CommandText = $"INSERT INTO {table} {field} VALUES {line};";
+            cmd.ExecuteNonQuery();
+        }
+
+
+       /* public static void DELETE(string table, string condition = "", object[] param = null)
         {
             SqlCommand command = sqlConnection.CreateCommand();
 
@@ -157,9 +223,9 @@ namespace LillyVKR
             }
             command.CommandText = SQL;
             command.ExecuteNonQuery();
-        }
+        }*/
 
-        public static DataTable callProc(string name, List<(string, object)> args)
+      /*  public static DataTable callProc(string name, List<(string, object)> args)
         {
             DataTable res = new DataTable();
             SqlCommand command = sqlConnection.CreateCommand();
@@ -196,8 +262,8 @@ namespace LillyVKR
             }
 
 
-        }
-        public static void Update(string tableName, DataTable newTable)
+        }*/
+      /*  public static void Update(string tableName, DataTable newTable)
         {
 
         }
@@ -232,6 +298,6 @@ namespace LillyVKR
             string sql = $"UPDATE {table} SET {set} WHERE {where}";
             command.CommandText = sql;
             command.ExecuteNonQuery();
-        }
+        }*/
     }
 }
