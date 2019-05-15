@@ -71,7 +71,6 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="myDB.cs" />
-    <Compile Include="Patient.cs" />
     <Compile Include="PatientSymptomsForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LillyVKR
@@ -31,7 +26,6 @@ namespace LillyVKR
         void insertPatient(string name)
         {
             myDB.INSERT(
-
                 "Patient",
                 new List<(string, object)>() { ("Name", name) }
                 );
@@ -63,7 +57,6 @@ namespace LillyVKR
         {
 
             DataTable table = new DataTable();
-            
             table.Columns.Add("PatientID");
             table.Columns.Add("IllnessID");
             Type t = Type.GetType("System.Single");
@@ -98,7 +91,7 @@ namespace LillyVKR
             DateTime dt = DateTime.Now.Date;
 
             int id = getPatientId(name);
-            
+
             InsertSymptoms(id, symptomIDs);
             InsertDiagnose(id, diagnose);
             MessageBox.Show("Ok");
