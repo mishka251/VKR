@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LillyVKR
 {
-  public  class Symptom
+    public class Symptom
     {
         public string Name;
         public Category Category;

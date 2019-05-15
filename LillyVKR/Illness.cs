@@ -13,7 +13,7 @@ namespace LillyVKR
         public Dictionary<int, double> Coefficients;
     
         public string Name;
-        int id;
+       public int id;
         public Illness(int id, string name)
         {
 
@@ -23,7 +23,7 @@ namespace LillyVKR
             DataTable symps = myDB.SELECT(
                 new List<string>() { "SymptomId", "Presence", "Coefficient" },
                 new List<string>() { "SymptomForIllness" },
-                new List<string>() { $"IllnessId={id}" }
+                new List<(string, object)>() { ("IllnessId",id) }
                 );
 
 
