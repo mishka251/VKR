@@ -22,7 +22,8 @@ namespace LillyVKR
                     {
                         Top = height,
                         Left = 50,
-                        Text = sym.Name
+                        Text = sym.Name,
+                        AutoSize=true
                     };
                     height += 50;
                     page.Controls.Add(cb);
