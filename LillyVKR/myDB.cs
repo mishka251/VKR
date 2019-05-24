@@ -134,6 +134,8 @@ namespace LillyVKR
                 return SqlDbType.Int;
             if (obj is float)
                 return SqlDbType.Float;
+            if (obj is DateTime)
+                return SqlDbType.DateTime;
 
             return SqlDbType.NVarChar;
         }
@@ -143,6 +145,8 @@ namespace LillyVKR
                 return DbType.Int32;
             if (obj is float)
                 return DbType.Double;
+            if (obj is DateTime)
+                return DbType.DateTime;
 
             return DbType.String;
         }

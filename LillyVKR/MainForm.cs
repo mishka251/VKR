@@ -17,9 +17,48 @@ namespace LillyVKR
             InitializeComponent();
         }
 
+        void insertDoctor(string name)
+        {
+            myDB.INSERT(
+                "Doctor",
+                new List<(string, object)>() { ("Name", name) }
+                );
+        }
+
+        bool hasDoctor(string name)
+        {
+            var table = myDB.SELECT(
+                 new List<string>() { "Id" },
+                 new List<string>() { "Doctor" },
+                 new List<(string name, object val)>() { ("Name", name) }
+                 );
+            return table.Rows.Count > 0;
+        }
+
+        int getDoctortId(string name)
+        {
+            var table = myDB.SELECT(
+                new List<string>() { "Id" },
+                new List<string>() { "Doctor" },
+                new List<(string name, object val)>() { ("Name", name) }
+                );
+
+            return int.Parse((string)table.Rows[0].ItemArray[0]);
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            PatientSymptomsForm patientForm = new PatientSymptomsForm(Calculation.categories);
+
+            string docName = tbName.Text;
+
+            if (!hasDoctor(docName))
+                insertDoctor(docName);
+
+            int docId = getDoctortId(docName);
+                
+
+
+            PatientSymptomsForm patientForm = new PatientSymptomsForm(Calculation.categories, docId);
             patientForm.Show();
         }
     }
