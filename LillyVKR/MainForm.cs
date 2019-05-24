@@ -61,5 +61,11 @@ namespace LillyVKR
             PatientSymptomsForm patientForm = new PatientSymptomsForm(Calculation.categories, docId);
             patientForm.Show();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            PatientsViewForm patientsView = new PatientsViewForm();
+            patientsView.Show();
+        }
     }
 }
