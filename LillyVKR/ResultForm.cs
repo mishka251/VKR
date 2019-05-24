@@ -10,9 +10,12 @@ namespace LillyVKR
 
         Dictionary<Illness, double> diagnose;
         List<int> symptomIDs;
-        public ResultForm(Dictionary<Illness, double> diagnose, List<int> symptoms)
+        int docId;
+        public ResultForm(Dictionary<Illness, double> diagnose, List<int> symptoms, int docId)
         {
             InitializeComponent();
+            this.docId = docId;
+
             int row = 1;
             foreach (var d in diagnose)
             {
@@ -59,12 +62,18 @@ namespace LillyVKR
             DataTable table = new DataTable();
             table.Columns.Add("PatientID");
             table.Columns.Add("IllnessID");
+
             Type t = Type.GetType("System.Single");
             table.Columns.Add("Ind").DataType = t;
 
+            table.Columns.Add("DoctorId");
+
+            Type t1 = Type.GetType("System.DateTime");
+            table.Columns.Add("Day").DataType=t1;
+
             foreach (var par in diagnose)
             {
-                table.Rows.Add(id, par.Key.id, (float)par.Value);
+                table.Rows.Add(id, par.Key.id, (float)par.Value, docId, DateTime.Now.Date);
             }
             myDB.INSERT("IllnessForPatient", table);
         }
@@ -74,10 +83,14 @@ namespace LillyVKR
             DataTable table = new DataTable();
             table.Columns.Add("PatientID");
             table.Columns.Add("SymptomID");
+            table.Columns.Add("DoctorId");
+
+            Type t1 = Type.GetType("System.DateTime");
+            table.Columns.Add("Day").DataType = t1;
 
             foreach (var sympt in symptoms)
             {
-                table.Rows.Add(id, sympt);
+                table.Rows.Add(id, sympt, docId, DateTime.Now.Date);
             }
             myDB.INSERT("SymptomForPatient", table);
         }

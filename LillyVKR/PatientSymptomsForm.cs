@@ -7,10 +7,12 @@ namespace LillyVKR
     public partial class PatientSymptomsForm : Form
     {
         Dictionary<int, CheckBox> checlkBoxesForId;
-        public PatientSymptomsForm(List<Category> categoryes)
+        int docId;
+        public PatientSymptomsForm(List<Category> categoryes, int docId)
         {
             InitializeComponent();
             checlkBoxesForId = new Dictionary<int, CheckBox>();
+            this.docId = docId;
 
             foreach (Category cat in categoryes)
             {
@@ -22,7 +24,8 @@ namespace LillyVKR
                     {
                         Top = height,
                         Left = 50,
-                        Text = sym.Name
+                        Text = sym.Name,
+                        AutoSize=true
                     };
                     height += 50;
                     page.Controls.Add(cb);
@@ -44,7 +47,7 @@ namespace LillyVKR
                     usedSymptomIDs.Add(par.Key);
             }
             var res = Calculation.Probabilities(symptoms);
-            ResultForm resForm = new ResultForm(res, usedSymptomIDs);
+            ResultForm resForm = new ResultForm(res, usedSymptomIDs, docId);
             resForm.Show();
         }
     }

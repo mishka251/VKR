@@ -74,6 +74,12 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="myDB.cs" />
+    <Compile Include="PatientsViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PatientsViewForm.Designer.cs">
+      <DependentUpon>PatientsViewForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="PatientSymptomsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +97,9 @@
     <Compile Include="Symptom.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PatientsViewForm.resx">
+      <DependentUpon>PatientsViewForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PatientSymptomsForm.resx">
       <DependentUpon>PatientSymptomsForm.cs</DependentUpon>
