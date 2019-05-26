@@ -8,11 +8,14 @@ namespace LillyVKR
     {
         public string Name;
         public List<Symptom> Symptoms;
+        public bool OnlyOneCValue;
 
-        public Category(int id, string name)
+        public Category(int id, string name, bool onlyOne)
         {
             this.Name = name ?? throw new ArgumentNullException(nameof(name));
             Symptoms = new List<Symptom>();
+
+            this.OnlyOneCValue = onlyOne;
 
             DataTable symps = myDB.SELECT(
                new List<string>() { "Id", "Name" },

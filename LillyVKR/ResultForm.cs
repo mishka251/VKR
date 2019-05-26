@@ -69,7 +69,7 @@ namespace LillyVKR
             table.Columns.Add("DoctorId");
 
             Type t1 = Type.GetType("System.DateTime");
-            table.Columns.Add("Day").DataType=t1;
+            table.Columns.Add("Day").DataType = t1;
 
             foreach (var par in diagnose)
             {
@@ -95,9 +95,50 @@ namespace LillyVKR
             myDB.INSERT("SymptomForPatient", table);
         }
 
+
+        bool validName(string name)
+        {
+            if (name == "")
+                return false;
+
+
+            for (int i = 0; i < name.Length; i++)
+            {
+                bool validSymb = false;
+                if ('a' <= name[i] && name[i] > 'z')
+                    validSymb = true;
+
+                if ('A' <= name[i] && name[i] > 'Z')
+                    validSymb = true;
+
+                if ('а' <= name[i] && name[i] > 'я')
+                    validSymb = true;
+
+                if ('А' <= name[i] && name[i] > 'Я')
+                    validSymb = true;
+
+                if (
+                    name[i] == ' '
+                    || name[i] == '.')
+                    validSymb = true;
+                if (!validSymb)
+                    return false;
+
+            }
+            return true;
+        }
+
+
         private void button1_Click(object sender, EventArgs e)
         {
             string name = textBox1.Text;
+
+            if (!validName(name))
+            {
+                MessageBox.Show("Заполните имя пациента");
+                return;
+            }
+
             if (!hasPatient(name))
                 insertPatient(name);
 
@@ -107,7 +148,7 @@ namespace LillyVKR
 
             InsertSymptoms(id, symptomIDs);
             InsertDiagnose(id, diagnose);
-            MessageBox.Show("Ok");
+            MessageBox.Show("Пациент внесен в базу");
         }
     }
 }

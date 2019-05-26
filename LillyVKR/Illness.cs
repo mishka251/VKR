@@ -24,6 +24,7 @@ namespace LillyVKR
                 new List<string>() { "SymptomId", "Presence", "Coefficient" },
                 new List<string>() { "SymptomForIllness" },
                 new List<(string, object)>() { ("IllnessId",id) }
+               
                 );
 
 

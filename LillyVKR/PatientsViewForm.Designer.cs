@@ -40,18 +40,18 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(237, 69);
+            this.comboBox1.Location = new System.Drawing.Point(32, 51);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.Size = new System.Drawing.Size(334, 21);
             this.comboBox1.TabIndex = 0;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(462, 74);
+            this.button1.Location = new System.Drawing.Point(436, 51);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(172, 23);
             this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
+            this.button1.Text = "искать пациента";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -60,10 +60,10 @@
             this.dgvIllness.AllowUserToAddRows = false;
             this.dgvIllness.AllowUserToDeleteRows = false;
             this.dgvIllness.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvIllness.Location = new System.Drawing.Point(32, 148);
+            this.dgvIllness.Location = new System.Drawing.Point(32, 138);
             this.dgvIllness.Name = "dgvIllness";
             this.dgvIllness.ReadOnly = true;
-            this.dgvIllness.Size = new System.Drawing.Size(311, 203);
+            this.dgvIllness.Size = new System.Drawing.Size(326, 213);
             this.dgvIllness.TabIndex = 2;
             // 
             // dgvSymptoms
@@ -71,7 +71,7 @@
             this.dgvSymptoms.AllowUserToAddRows = false;
             this.dgvSymptoms.AllowUserToDeleteRows = false;
             this.dgvSymptoms.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSymptoms.Location = new System.Drawing.Point(437, 148);
+            this.dgvSymptoms.Location = new System.Drawing.Point(462, 138);
             this.dgvSymptoms.Name = "dgvSymptoms";
             this.dgvSymptoms.ReadOnly = true;
             this.dgvSymptoms.Size = new System.Drawing.Size(327, 213);
@@ -88,7 +88,7 @@
             this.Controls.Add(this.comboBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PatientsViewForm";
-            this.Text = "PatientsViewForm";
+            this.Text = "Просмотр пациентов";
             ((System.ComponentModel.ISupportInitialize)(this.dgvIllness)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSymptoms)).EndInit();
             this.ResumeLayout(false);
