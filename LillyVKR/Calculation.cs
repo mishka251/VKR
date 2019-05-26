@@ -16,7 +16,12 @@ namespace LillyVKR
             DataTable categorys = myDB.SELECT_ALL("Category");
             for (int i = 0; i < categorys.Rows.Count; i++)
             {
-                categories.Add(new Category(int.Parse((string)categorys.Rows[i][0]), (string)categorys.Rows[i][1]));
+                categories.Add(new Category(
+                    int.Parse((string)categorys.Rows[i][0]),
+                    (string)categorys.Rows[i][1],
+                    bool.Parse((string)categorys.Rows[i][2])
+                    )
+                    );
             }
 
             DataTable illness = myDB.SELECT_ALL("Illness");

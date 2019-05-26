@@ -60,7 +60,7 @@
             this.Controls.Add(this.button1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PatientSymptomsForm";
-            this.Text = "PatientSymptomsForm";
+            this.Text = "Анамнез";
             this.ResumeLayout(false);
 
         }

@@ -30,14 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tbName = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(105, 235);
+            this.button1.Location = new System.Drawing.Point(291, 240);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(159, 91);
             this.button1.TabIndex = 0;
@@ -45,27 +43,11 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(328, 235);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(81, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Ваше имя, док";
-            // 
-            // tbName
-            // 
-            this.tbName.Location = new System.Drawing.Point(459, 232);
-            this.tbName.Name = "tbName";
-            this.tbName.Size = new System.Drawing.Size(100, 20);
-            this.tbName.TabIndex = 2;
-            // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(393, 283);
+            this.button2.Location = new System.Drawing.Point(291, 107);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(149, 52);
+            this.button2.Size = new System.Drawing.Size(165, 77);
             this.button2.TabIndex = 3;
             this.button2.Text = "История";
             this.button2.UseVisualStyleBackColor = true;
@@ -77,22 +59,17 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.tbName);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.Text = "Экспертная система для диагностики заболеваний";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tbName;
         private System.Windows.Forms.Button button2;
     }
 }
